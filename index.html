@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!-- RESET CSS -->
+        <link rel="stylesheet" href="css/reset.css">
+        <!-- BOOTSTRAP -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- LOCAL STYLES -->
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="content">
+            <h1>Hourly Wage Calculator</h1>
+            <!-- Container to adjust styles of forms group -->
+            <div class="forms-container">
+              
+                <div class="instructions">
+                  Add rules that can be added or subtracted from a base wage. You must enter a Title and each Base Page Modifier must be an integer. The Base Wage is determined after the Pay Interface is created (when the rules are added). You can delete a rule by hovering over it and clicking the delete icon.
+                </div>
+
+                <!-- Input and text for adding rules -->
+                <div class="rules">
+                    <h4>Add Rules</h4>
+
+                    <!-- Input for Title -->
+                    <div class="input-group">
+                        <span class="input-group-addon">Title</span>
+                        <input type="text" id="rule-title" class="form-control" placeholder="Example: Node.js">
+                    </div>
+
+                    <!-- Input for Base Pay Modifier -->
+                    <div class="input-group has-feedback">
+                        <span class="input-group-addon">Base Pay Modifier</span>
+                        <input type="text" id="base-modifier" class="form-control" placeholder="Example: -10, 25, or 100. (Integers Only)">
+                    </div>
+
+                    <!-- Button to add rule -->
+                    <button type="button" id="add-rule" class="btn btn-primary">Add Rule</button>
+
+                    <!-- Rules that have been created -->
+                    <div class="rules-created">
+
+                        <h4>Rules Created</h4>
+
+                    </div>
+
+                </div>
+
+                <!-- Button to create Pay Interface -->
+                <button type="button" id="create-pay-interface" class="btn btn-primary">Create Pay Interface</button>
+
+            </div>
+
+            <!-- Container for Pay Interface -->
+            <div class="pay-interface">
+                <span class="back-to-forms">Return to Editor</span>
+            </div>
+
+        </div>
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
