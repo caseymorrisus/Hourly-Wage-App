@@ -3,7 +3,7 @@ var main = function () {
   // CREATING RULES FOR PAY INTERFACE
   //
   // Function for adding error messages when validation fails
-  var add_error_message = function (object, message) {
+  var addErrorMessage = function (object, message) {
     var object_container = object.parent();
     var error_container = $('<span class="error-message">');
     if (object_container.children('.error-message').length === 0) {
@@ -22,7 +22,7 @@ var main = function () {
       input_container.children('.error-message').remove();
     } else {
       input_container.removeClass('has-success').addClass('has-error');
-      add_error_message(input, "Must input an integer value.");
+      addErrorMessage(input, "Must input an integer value.");
     }
   });
   // Title Can Not Be Blank
@@ -35,7 +35,7 @@ var main = function () {
       input_container.children('.error-message').remove();
     } else {
       input_container.removeClass('has-success').addClass('has-error');
-      add_error_message(input, "Must input a title.");
+      addErrorMessage(input, "Must input a title.");
     }
   });
   // Base modifier must be a valid integer
@@ -48,54 +48,54 @@ var main = function () {
       input_container.children('.error-message').remove();
     } else {
       input_container.removeClass('has-success').addClass('has-error');
-      add_error_message(input, "Must input an integer value.");
+      addErrorMessage(input, "Must input an integer value.");
     }
   });
   // Function for adding new rules to the DOM
-  var add_rule_to_dom = function () {
+  var addRuleToDom = function () {
     var container = $('<div class="rule">');
     var rule_title = $('#rule-title').val();
     var base_modifier = $('#base-modifier').val();
     // Validate that Rule Title and Modifier are not empty
     if (rule_title !== '' && base_modifier !== '') {
       // Function for clearing inputs after a rule is submitted
-      var clear_inputs = function () {
+      var clearInputs = function () {
         $("#rule-title").val('');
         $("#rule-title").parent().removeClass('has-success');
         $("#base-modifier").val('');
         $("#base-modifier").parent().removeClass('has-success');
       };
       // Function for appending rules to the DOM
-      var add_rules = function (title, modifier) {
+      var addRules = function (title, modifier) {
         $('.rules-created').append(container.append("<em>" + title + "</em>: " + modifier).append(''));
-        clear_inputs();
+        clearInputs();
         $('#rule-title').focus();
         $('.error-message').remove();
       };
       // Validate inputs before adding rule to the DOM
       var number_of_errors = $('.rules').find('.error-message').length;
       if (number_of_errors === 0) {
-        add_rules(rule_title, base_modifier);
+        addRules(rule_title, base_modifier);
       } else {
         alert("Please check for errors.\n" + number_of_errors + " error(s).");
       }
     } else {
       if (rule_title === '') {
-        add_error_message($('#rule-title'), "Must add values!");
+        addErrorMessage($('#rule-title'), "Must add values!");
       }
       if (base_modifier === '') {
-        add_error_message($('#base-modifier'), "Must add values!");
+        addErrorMessage($('#base-modifier'), "Must add values!");
       }
     }
   };
   // Add event for when Add Rule button is clicked.
   $('#add-rule').on('click', function () {
-    add_rule_to_dom();
+    addRuleToDom();
   });
   // Add event for when return key is pressed
   $('#base-modifier').on('keydown', function (e) {
     if (e.which == 13) {
-      add_rule_to_dom();
+      addRuleToDom();
     }
   });
   // Add remove button when rule is hovered 
@@ -124,15 +124,15 @@ var main = function () {
       rules_array.push(rule);
     });
     // Function to hide original forms and unhide Pay Interface
-    var hide_original_forms = function () {
+    var hideOriginalForms = function () {
       $('.forms-container').hide();
       $('.pay-interface').fadeIn();
     };
     // Function to create Pay Interface
-    var create_pay_interface = function () {
+    var createPayInterface = function () {
       // Validate that at least 1 rule is present
       if (rules_array.length > 0) {
-        hide_original_forms();
+        hideOriginalForms();
         // Empty Pay Interface in case it's already populated
         $('.pay-interface').empty();
         // Add Back To Editor tab to Pay Interface
@@ -162,10 +162,10 @@ var main = function () {
         // Add Pay after Modifiers
         $('.pay-interface').append('<h4 class="modified_pay">Pay After Modifiers</h4>');
       } else {
-        add_error_message($('#create-pay-interface'), "Must have at least 1 rule.");
+        addErrorMessage($('#create-pay-interface'), "Must have at least 1 rule.");
       }
     };
-    create_pay_interface();
+    createPayInterface();
     // Function to return to Editor View
     $('.back-to-editor').on('click', function () {
       $('.pay-interface').hide();
@@ -215,7 +215,7 @@ var main = function () {
           $('.pay-interface').append(error_container.text("Final Wage is negative, increase Base Pay or change rules."));
         }
       } else {
-        add_error_message($('#base-wage'), "Must input an integer value.");
+        addErrorMessage($('#base-wage'), "Must input an integer value.");
       }
     });
   });
